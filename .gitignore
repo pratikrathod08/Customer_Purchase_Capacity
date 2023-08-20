@@ -1,7 +1,7 @@
 ## environment
 
 venv1/
-CustomerPurchaseCapacity.egg-info/
+CustomerPurchaseCapacity.egg-info
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
