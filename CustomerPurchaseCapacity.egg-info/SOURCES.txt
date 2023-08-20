@@ -1,0 +1,5 @@
+setup.py
+CustomerPurchaseCapacity.egg-info/PKG-INFO
+CustomerPurchaseCapacity.egg-info/SOURCES.txt
+CustomerPurchaseCapacity.egg-info/dependency_links.txt
+CustomerPurchaseCapacity.egg-info/top_level.txt
