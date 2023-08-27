@@ -94,6 +94,10 @@ class DataTransformation:
             
             raw_df = pd.read_csv(raw_data_path)
 
+            ## removed insignificant column for prediction
+            
+            raw_df.drop(labels='Client_Id',axis=1,inplace=True)
+
             # raw_df.drop(labels='Client_Id',axis=1,inplace=True)
 
             logging.info('Reading of data completed')
