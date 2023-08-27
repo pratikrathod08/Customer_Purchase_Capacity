@@ -94,3 +94,12 @@ def model_evaluation(df):
     except Exception as e:
         logging.info("Exception occured during model evaluation")
         raise CustomException(e, sys)
+
+def load_object(file_path):
+    try:
+        with open(file_path, "rb") as file_obj:
+            return pickle.load(file_obj)
+
+    except Exception as e:
+        logging,info("Exception occure during object load")
+        raise CustomException(e, sys)
