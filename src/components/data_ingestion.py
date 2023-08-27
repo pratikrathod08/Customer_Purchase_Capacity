@@ -26,7 +26,7 @@ class DataIngestion:
         logging.info("Data Ingestion method Started")
 
         try:
-            df = pd.read_csv(os.path.join("notebooks/data","BankChurners.csv"))
+            df = pd.read_csv(os.path.join("notebooks/data","data_new.csv"))
             logging.info("Data read as pandas dataframe")
 
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path),exist_ok=True)
