@@ -6,7 +6,7 @@ import pandas as pd
 from src.exception import CustomException
 from src.logger import logging
 
-from src.utils import load_object , data_convert , pca
+from src.utils import load_object , data_convert 
 
 class PredictionPipeline:
     def __init__(self):
@@ -22,9 +22,6 @@ class PredictionPipeline:
 
             data_scaled = preprocessor.transform(feature)
             logging.info(f"Scaled data : {data_scaled}")
-
-            # pca_df = pca(data_scaled)
-            # logging.info(f"Dimentionality reduction completed new data : {pca_df.head()}")
 
             prediction = model.predict(data_scaled)
             return prediction
