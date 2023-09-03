@@ -6,7 +6,7 @@ import pandas as pd
 from src.exception import CustomException
 from src.logger import logging
 
-from src.utils import load_object
+from src.utils import load_object , data_convert , pca
 
 class PredictionPipeline:
     def __init__(self):
@@ -21,8 +21,14 @@ class PredictionPipeline:
             model = load_object(model_path)
 
             data_scaled = preprocessor.transform(feature)
+            logging.info(f"Scaled data : {data_scaled}")
+
+            # pca_df = pca(data_scaled)
+            # logging.info(f"Dimentionality reduction completed new data : {pca_df.head()}")
+
             prediction = model.predict(data_scaled)
-            return pred
+            return prediction
+            logging.info(f" prediction done result is : {prediction}")
 
         except Exception as e:
             logging.info("Exception occure during prediction")
@@ -31,25 +37,25 @@ class PredictionPipeline:
 class CustomData:
     def __init__(
         self,
-        Client_Id:float,
-        Attrition_Flag:str,
-        Customer_Age:float,
-        Gender:str,
-        Dependent_count:float,
-        Education_Level:str,
-        Marital_Status:str,
-        Income_Category:str,
-        Card_Category:str,
-        Months_on_book:float,
-        Total_Relationship_Count:float,
-        Months_Inactive_Count:float,
-        Contacts_Count:float,
-        Credit_Limit:float,
-        Total_Revolving_Bal:float,
-        Avg_Open_To_Buy:float,
-        Total_Trans_Amt:float,
-        Total_Trans_Ct:float,
-        Avg_Utilization_Ratio:float
+        Client_Id,
+        Attrition_Flag,
+        Customer_Age,
+        Gender,
+        Dependent_count,
+        Education_Level,
+        Marital_Status,
+        Income_Category,
+        Card_Category,
+        Months_on_book,
+        Total_Relationship_Count,
+        Months_Inactive_Count,
+        Contacts_Count,
+        Credit_Limit,
+        Total_Revolving_Bal,
+        Avg_Open_To_Buy,
+        Total_Trans_Amt,
+        Total_Trans_Ct,
+        Avg_Utilization_Ratio
         ):
         self.Client_Id=Client_Id,
         self.Attrition_Flag=Attrition_Flag,
@@ -70,6 +76,8 @@ class CustomData:
         self.Total_Trans_Amt=Total_Trans_Amt,
         self.Total_Trans_Ct=Total_Trans_Ct,
         self.Avg_Utilization_Ratio=Avg_Utilization_Ratio
+
+        logging.info("cutom data collected")
 
     def get_data_as_dataframe(self):
         try:
@@ -95,11 +103,16 @@ class CustomData:
             "Avg_Utilization_Ratio":[self.Avg_Utilization_Ratio]
 
             }
-            df = pd.DataFrame(custom_data_input_dict)
+
+            logging.info(f"custom data dict : {custom_data_input_dict}")
+            new_dict = data_convert(custom_data_input_dict)
+            logging.info(f"new dict created with converted data type : {new_dict}")
+            df = pd.DataFrame(new_dict)
             logging.info("Dataframe Gathered")
+            logging.info(f"new data datafrmae : {df.head()}")
             return df
 
         except Exception as e:
-            logging.info("Exception occure during getting data as datframe")
+            logging.info("Exception occure during getting data as dataframe")
             raise CustomException(e, sys)
 

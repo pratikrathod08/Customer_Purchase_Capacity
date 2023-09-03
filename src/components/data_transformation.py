@@ -45,7 +45,7 @@ class DataTransformation:
             numerical_cols = ['Customer_Age', 'Dependent_count', 'Months_on_book',
                 'Total_Relationship_Count', 'Months_Inactive_Count', 'Contacts_Count',
                 'Credit_Limit', 'Total_Revolving_Bal', 'Avg_Open_To_Buy',
-                'Total_Trans_Amt', 'Total_Trans_Ct', 'Avg_Utilization_Ratio']
+                'Total_Trans_Amt', 'Total_Trans_Ct']
 
             ## define custom ranking for each column for ordinal transformation
 
@@ -96,7 +96,7 @@ class DataTransformation:
 
             ## removed insignificant column for prediction
             
-            raw_df.drop(labels='Client_Id',axis=1,inplace=True)
+            raw_df=raw_df.drop(labels=['Client_Id','Avg_Utilization_Ratio'],axis=1)
 
             # raw_df.drop(labels='Client_Id',axis=1,inplace=True)
 

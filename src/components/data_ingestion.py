@@ -12,8 +12,7 @@ from dataclasses import dataclass
 
 @dataclass
 class DataIngestionconfig:
-    train_data_path:str = os.path.join('artifacts','train.csv')
-    test_data_path:str = os.path.join('artifacts','test.csv')
+
     raw_data_path:str = os.path.join('artifacts','raw.csv')
 
 ## create data ingestion class
@@ -33,12 +32,6 @@ class DataIngestion:
 
             df.to_csv(self.ingestion_config.raw_data_path,index=False)
             logging.info("Raw data created ")
-
-            train_set,test_set = train_test_split(df, test_size=0.20, random_state=42)
-            logging.info("Data Splitted in train test split")
-
-            train_set.to_csv(self.ingestion_config.train_data_path,index=False)
-            test_set.to_csv(self.ingestion_config.test_data_path, index = False)
 
             logging.info("Ingestion of data is completed ")
 

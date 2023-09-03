@@ -7,6 +7,10 @@ import pandas as pd
 from src.exception import CustomException
 from src.logger import logging
 
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
+
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler 
 from sklearn.cluster import KMeans
@@ -103,3 +107,69 @@ def load_object(file_path):
     except Exception as e:
         logging,info("Exception occure during object load")
         raise CustomException(e, sys)
+
+
+
+def data_convert(data):
+    try:
+        new_dict = {}
+        for key, value in data.items():
+            if type(value) == list:
+                if type(value[0]) == tuple:    
+                    print(value, type(value[0]),value[0][0])
+                    if value[0][0].isnumeric():
+                        value_0 = [float(value[0][0])]
+                    else: 
+                        value_0 = [value[0][0]]
+                    new_dict[key] = value_0
+                else:
+                    new_dict[key] = value[0]
+        return new_dict
+
+    except Exception as e:
+        logging.info("error occure during data conversion")
+        raise CustomException(e, sys)
+
+# def pca(data):
+#     try:
+#         pca = PCA(n_components=3)
+#         pca.fit(data)
+#         pca_df=pd.DataFrame(pca.transform(data),columns=['col1','col2','col3'])
+#         return pca_df
+#     except Exception as e:
+#         logging.info("exception occure during dimentionality reduction")
+#         raise CustomException(e, sys)
+
+def capacity(data):
+    if int(data) == 0:
+        return "Excelent"
+    elif int(data) == 1:
+        return "Good"
+    elif int(data) == 2:
+        return "Worst"
+    else:
+        return "Fair"
+
+def visualize():
+    # features = ['Customer_Age','Education_Level','Income_Category','Card_Category','Credit_Limit','Months_Inactive_Count','Avg_Open_To_Buy','Total_Revolving_Bal','Total_Trans_Amt','Total_Trans_Ct','Avg_Utilization_Ratio']
+    
+    Clusters = ['Cluster 0','Cluster 1','Cluster 2','Cluster 3']
+    rank = [100, 75, 25, 50]
+
+    ## plot 1
+    fig1, ax1 = plt.subplots()
+    ax1.bar(Clusters,rank,color = ["Blue","Green","Red","Orange"])
+    ax1.set_xlabel("Clusters")
+    ax1.set_ylabel("Customer Capacity In Percentage ")
+    ax1.set_title("Cluster wise customer purchase capacity ")
+
+
+    ## save plot 
+
+    buffer1 = BytesIO()
+    plt.savefig(buffer1, format="png")
+    buffer1.seek(0)
+    plot1 = base64.b64encode(buffer1.getvalue()).decode("utf-8")
+    # plot1.close()
+
+    return plot1

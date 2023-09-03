@@ -34,15 +34,17 @@ class ModelTrainer:
         try:
             logging.info('Model training initiated')
 
+            df=pd.DataFrame(processed_data)
+
             ## reduction in dimentionality of data
-            pca = PCA(n_components=3)
-            pca.fit(processed_data)
-            pca_df=pd.DataFrame(pca.transform(processed_data),columns=['col1','col2','col3'])
-            logging.info(f"Dimentionality reducted of data : {pca_df.head()}")
+            # pca = PCA(n_components=3)
+            # pca.fit(processed_data)
+            # pca_df=pd.DataFrame(pca.transform(processed_data),columns=['col1','col2','col3'])
+            # logging.info(f"Dimentionality reducted of data : {pca_df.head()}")
 
             ## knee finding
 
-            knee,silhouette_dict =knee_locator(pca_df)
+            knee,silhouette_dict =knee_locator(df)
 
             logging.info(f"Knee located : {knee}")
             logging.info(f"silhoutte score with no of clusters {silhouette_dict}")
@@ -52,9 +54,9 @@ class ModelTrainer:
             ## model training
             kmeans = KMeans(n_clusters=knee,init="k-means++")
 
-            clusters = kmeans.fit_predict(pca_df)
-            pca_df['clusters'] = clusters
-            processed_clustered_data = pd.concat([pd.DataFrame(processed_data),pd.Series(clusters)],axis=1,ignore_index=True)
+            clusters = kmeans.fit_predict(df)
+            df['clusters'] = clusters
+            processed_clustered_data = pd.concat([pd.DataFrame(df),pd.Series(clusters)],axis=1,ignore_index=True)
             logging.info("Clusters created")
 
             ## evaluation of classification model
