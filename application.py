@@ -62,15 +62,10 @@ def predict_datapoint():
             pred = predict_pipeline.predict(final_new_data)
             logging.info("prediction completed on new data")
             logging.info(f"Prediction : {pred}")
-            print(pred)
-
             cap = capacity(pred[0])
-            print(cap)
-
+            logging.info(f"Customer Capacity : {cap}")
             plot = visualize()
-
-
-            # return render_template("form.html",final_result=pred[0])
+            logging.info(f"Make plot for purpose of visualization : \n{plot}")
 
             return render_template("result.html",plot1=plot , cls = pred[0],review=cap)
 
@@ -78,10 +73,6 @@ def predict_datapoint():
         except Exception as e:
             logging.info("Exception occure during post method")
             raise CustomException(e,sys)
-
-
-
-
 
 
 if __name__ =="__main__":

@@ -74,7 +74,7 @@ class CustomData:
         self.Total_Trans_Ct=Total_Trans_Ct,
         self.Avg_Utilization_Ratio=Avg_Utilization_Ratio
 
-        logging.info("cutom data collected")
+        logging.info("custom data collected")
 
     def get_data_as_dataframe(self):
         try:
@@ -106,7 +106,7 @@ class CustomData:
             logging.info(f"new dict created with converted data type : {new_dict}")
             df = pd.DataFrame(new_dict)
             logging.info("Dataframe Gathered")
-            logging.info(f"new data datafrmae : {df.head()}")
+            logging.info(f"new data dataframe : {df.head()}")
             return df
 
         except Exception as e:
