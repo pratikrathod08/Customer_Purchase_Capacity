@@ -116,7 +116,6 @@ def data_convert(data):
         for key, value in data.items():
             if type(value) == list:
                 if type(value[0]) == tuple:    
-                    print(value, type(value[0]),value[0][0])
                     if value[0][0].isnumeric():
                         value_0 = [float(value[0][0])]
                     else: 
@@ -144,8 +143,10 @@ def capacity(data):
     if int(data) == 0:
         return "Excelent"
     elif int(data) == 1:
-        return "Good"
+        return "Very Good"
     elif int(data) == 2:
+        return "Good"
+    elif int(data) == 3:
         return "Worst"
     else:
         return "Fair"
@@ -153,12 +154,12 @@ def capacity(data):
 def visualize():
     # features = ['Customer_Age','Education_Level','Income_Category','Card_Category','Credit_Limit','Months_Inactive_Count','Avg_Open_To_Buy','Total_Revolving_Bal','Total_Trans_Amt','Total_Trans_Ct','Avg_Utilization_Ratio']
     
-    Clusters = ['Cluster 0','Cluster 1','Cluster 2','Cluster 3']
-    rank = [100, 75, 25, 50]
+    Clusters = ['Cluster 0','Cluster 1','Cluster 2','Cluster 3',"Cluster 4"]
+    rank = [100,80,60,20,40]
 
     ## plot 1
     fig1, ax1 = plt.subplots()
-    ax1.bar(Clusters,rank,color = ["Blue","Green","Red","Orange"])
+    ax1.bar(Clusters,rank,color = ["Blue","Green","skyblue","Red","Orange"])
     ax1.set_xlabel("Clusters")
     ax1.set_ylabel("Customer Capacity In Percentage ")
     ax1.set_title("Cluster wise customer purchase capacity ")

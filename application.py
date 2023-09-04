@@ -65,7 +65,7 @@ def predict_datapoint():
             cap = capacity(pred[0])
             logging.info(f"Customer Capacity : {cap}")
             plot = visualize()
-            logging.info(f"Make plot for purpose of visualization : \n{plot}")
+            logging.info(f"Make plot for understand result ")
 
             return render_template("result.html",plot1=plot , cls = pred[0],review=cap)
 
