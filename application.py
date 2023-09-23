@@ -12,6 +12,8 @@ from src.logger import logging
 from src.exception import CustomException
 from src.utils import capacity , visualize
 
+from pymongo.mongo_client import MongoClient
+
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -67,12 +69,27 @@ def predict_datapoint():
             plot = visualize()
             logging.info(f"Make plot for understand result ")
 
+            data_dict = final_new_data.to_dict('list')
+            data_dict['Result'] = str(pred)
+            data_dict['Capacity'] = cap
+            logging.info(f"New Data With Prediction : {data_dict}")
+
+            uri = "mongodb+srv://08Pratik:08Pratik@cluster0.vd8ss6z.mongodb.net/?retryWrites=true&w=majority"
+            # Create a new client and connect to the server
+            client = MongoClient(uri)
+            DB = client['Customer_Purchase_Capacity']
+            coll = DB['Prediction']
+            coll.insert_one(data_dict)
+            logging.info("Data successfully Uploaded on mongodb atlas")
+
             return render_template("result.html",plot1=plot , cls = pred[0],review=cap)
 
 
         except Exception as e:
             logging.info("Exception occure during post method")
             raise CustomException(e,sys)
+
+        
 
 
 if __name__ =="__main__":

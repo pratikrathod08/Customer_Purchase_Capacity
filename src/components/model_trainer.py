@@ -35,6 +35,7 @@ class ModelTrainer:
             logging.info('Model training initiated')
 
             df=pd.DataFrame(processed_data)
+            logging.info(f"Processed df fot find knee and silhoutte score : {df.head()}")
 
             ## reduction in dimentionality of data
             # pca = PCA(n_components=3)
@@ -52,7 +53,9 @@ class ModelTrainer:
             print(f"silhouette score : {silhouette_dict}")
 
             ## model training
-            kmeans = KMeans(n_clusters=knee,init="k-means++")
+            ## We will go with maximum silhoutte score which is from 5 cluster
+
+            kmeans = KMeans(n_clusters=5,init="k-means++")
 
             clusters = kmeans.fit_predict(df)
             df['clusters'] = clusters

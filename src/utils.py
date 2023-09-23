@@ -22,6 +22,9 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, confusion_matrix
 
+import warnings
+warnings.filterwarnings("ignore")
+
 
 def save_object(file_path,obj):
     try:

@@ -109,7 +109,7 @@ class DataTransformation:
 
             ## apply transforamtion 
 
-            preprocessed_data = preprocessor_obj.fit_transform(raw_df)
+            preprocessed_data = pd.DataFrame(preprocessor_obj.fit_transform(raw_df),columns=list(raw_df.columns))
 
             logging.info("Data preprocessing completed")
 
