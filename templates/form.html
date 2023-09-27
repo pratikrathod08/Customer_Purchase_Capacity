@@ -1,13 +1,21 @@
 <html>
-
+<head>
+  <style>
+      h1{text-align:center}
+  </style>
+</head>
 <body>
+
+  <h1> Customer Purchase Capacity Predictor </h1><br><br>
+  <h4> Fill below detail to know customer purchase capacity </h4>
+
 <form action="{{url_for('predict_datapoint')}}" method="POST">
 
     <div class="form-group">
       <label for="Client_Id">Client Id:</label>
       <input type="text" id="Client_Id" name="Client_Id" placeholder="Enter Client Id (float)">
     </div>
-    
+ 
     <div class="form-group">
         <label for="Attrition_Flag">Attrition Flag:</label>
         <select id="Attrition_Flag" name="Attrition_Flag">
@@ -125,7 +133,7 @@
         <label for="Avg_Utilization_Ratio">Avg Utilization Ratio:</label>
         <input type="text" id="Avg_Utilization_Ratio" name="Avg_Utilization_Ratio" placeholder="Enter Avg Utilization Ratio (float)">
     </div>
-
+    <br>
     <div style="clear:both;"></div>
   <input type="submit" value="Submit">
 </form>
