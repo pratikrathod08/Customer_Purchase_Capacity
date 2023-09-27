@@ -1,6 +1,6 @@
 # Customer Purchase Capacity Predictor
 
-![image](r"D:\PRATIK\MSC(BIA)\PW\pw_projects\Purchasing_Capacity_Customer\submission\images\result.png")
+![image](r".//docs/result.png")
 
 ### 📋 Description
 
