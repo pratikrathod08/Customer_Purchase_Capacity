@@ -1,6 +1,6 @@
 # Customer Purchase Capacity Predictor
 
-![image](r".//docs/result.png")
+![image](docs/result.png)
 
 ### 📋 Description
 
