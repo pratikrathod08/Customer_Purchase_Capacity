@@ -19,8 +19,14 @@
 
 ### Deployment
 
-1. Create Iam user
-2. 
+1. docker build check
+2. GitHub workflow setup
+3. IAM user in AWS create
+4. ECR repository create
+5. EC2 instance create
+6. create runner and run all codes given in ec2
+7. create new secret keys
+8. run runner in ec2
 
 
 
