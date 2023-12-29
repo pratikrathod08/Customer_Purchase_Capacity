@@ -19,4 +19,8 @@
 
 ### Deployment
 
+1. Create Iam user
+2. 
+
+
 
