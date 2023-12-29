@@ -3,6 +3,7 @@ import sys
 
 from flask import Flask, request, Response, render_template, jsonify
 
+
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
